@@ -1,11 +1,27 @@
-FROM node:18-alpine
+FROM node:18-alpine AS build
 
-RUN apk add curl
+WORKDIR /usr/src/node/server
 
-ADD . /usr/src/node/server/
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-WORKDIR /usr/src/node/server/
+COPY tsconfig.json ./
+COPY src ./src
+RUN yarn build
+
+FROM node:18-alpine AS runtime
+
+ENV NODE_ENV=production
+
+WORKDIR /usr/src/node/server
+
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production && yarn cache clean
+
+COPY --from=build --chown=node:node /usr/src/node/server/build ./build
+
+USER node
 
 EXPOSE 3000
 
-CMD [ "sh", "-c", "node ./build/index.js" ]
+CMD ["node", "./build/index.js"]
