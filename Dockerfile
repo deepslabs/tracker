@@ -13,6 +13,8 @@ FROM node:18-alpine AS runtime
 
 ENV NODE_ENV=production
 
+RUN apk add curl
+
 WORKDIR /usr/src/node/server
 
 COPY package.json yarn.lock ./
