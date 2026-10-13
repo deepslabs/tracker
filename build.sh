@@ -10,8 +10,8 @@ yarn build
 set -e
 
 # the docker image name and dockerhub repo
-NAME="sxn-tracker"
-REPO="safexn"
+NAME="deeps-tracker"
+REPO="deepslabs"
 
 # extract the current npm version from package.json
 VERSION=$(cat package.json \
