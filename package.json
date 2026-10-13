@@ -1,5 +1,5 @@
 {
-	"name": "sxn-tracker",
+	"name": "deeps-tracker",
 	"version": "2.1.1",
 	"main": "index.js",
 	"license": "MIT",
@@ -17,8 +17,10 @@
 		"ver-major": "npm version $(semver $npm_package_version -i major)"
 	},
 	"dependencies": {
-		"@polkadot/api": "^v10.9.1",
-		"@polkadot/keyring": "^12.3.2",
+		"@polkadot/api": "^17.0.2",
+		"@polkadot/keyring": "^14.0.3",
+		"@polkadot/util": "^14.0.3",
+		"@polkadot/util-crypto": "^14.0.3",
 		"axios": "^1.4.0",
 		"dotenv": "^16.1.4",
 		"express": "^4.18.2",
